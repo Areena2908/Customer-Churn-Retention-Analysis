@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# MacOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Note: We are allowing 'data/' and 'models/' and 'plots/' to be committed 
+# so the portfolio project works instantly for anyone who clones it.
