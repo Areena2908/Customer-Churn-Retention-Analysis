@@ -1,42 +1,58 @@
-# Customer Churn Analysis Portfolio Project
+<h1 align="center">📉 Telco Customer Churn Prediction</h1>
 
-This repository contains a complete, end-to-end Data Science portfolio project predicting customer churn using the IBM Telco Customer Churn dataset.
+<p align="center">
+  <strong>An End-to-End Machine Learning & Analytics Portfolio Project</strong>
+</p>
 
-## 📊 Step 3: Key Insights
-Based on the Exploratory Data Analysis and Machine Learning feature importance, the following insights were discovered:
+## 📖 Overview
+Customer churn is one of the most important metrics for a growing, subscriber-based business. Retaining an existing customer costs far less than acquiring a new one. This project utilizes the **IBM Telco Customer Churn dataset** to build a comprehensive data pipeline that not only predicts *which* customers are likely to leave, but also identifies the primary business drivers causing the churn.
 
-1. **Who is most likely to churn?**
-   Customers on **Month-to-month contracts** are highly likely to churn, especially those who have been with the company for less than a year (low tenure).
-2. **Top 3 factors driving churn:**
-   - **Contract Type:** Month-to-month users leave easily; 1 or 2-year contract users stay.
-   - **Tenure:** The first 6-12 months are critical. High churn happens early on.
-   - **Total & Monthly Charges:** High monthly bills correlate strongly with higher churn rates.
-3. **Average Monthly Charge comparison:**
-   Customers who churned had a significantly **higher average monthly charge** (~$74) compared to those who stayed (~$61).
+### 🎯 Key Objectives
+- **Data Engineering:** Extract, clean, and preprocess raw telecom data.
+- **Exploratory Data Analysis (EDA):** Uncover statistical patterns separating loyal customers from flight risks.
+- **Predictive Modeling:** Train a Random Forest Classifier to identify high-risk accounts with ~80% accuracy.
+- **Interactive Dashboard:** Deploy a Streamlit web application summarizing actionable business insights.
 
-## 🚀 How to Run the Project
+## 🛠 Tech Stack
+*   **Python**
+*   **Pandas & NumPy:** Data manipulation and cleaning.
+*   **Matplotlib & Seaborn:** Statistical data visualization.
+*   **Scikit-Learn:** Machine Learning algorithms and label encoding.
+*   **Streamlit & Plotly:** Interactive web dashboard and deployment.
 
-1. **Set up virtual environment & install requirements:**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   ```
+## 📊 Key Business Insights
+Based on our EDA and Machine Learning Feature Importance extraction, we discovered the following:
 
-2. **Clean Data and Generate EDA Plots:**
-   ```bash
-   python 1_data_cleaning.py
-   python 2_eda.py
-   ```
+1. **The Contract Trap:** Customers on **Month-to-month contracts** are overwhelmingly more likely to churn compared to those on 1-year or 2-year lock-in periods. 
+2. **The "Danger Zone" Tenure:** The highest flight risk occurs within the **first 6 to 12 months**. If a customer remains for over a year, their probability of churning drops significantly.
+3. **Price Sensitivity:** High monthly charges strongly correlate with higher churn rates, indicating that a pricing review for basic service tiers may drastically improve retention.
 
-3. **Train the Machine Learning Model:**
-   ```bash
-   python 3_model.py
-   ```
+<br>
 
-4. **Launch the Dashboard:**
-   ```bash
-   streamlit run 4_dashboard.py
-   ```
+## 🚀 How to Run Locally
 
-The Streamlit dashboard provides an interactive UI to view churn by contract, tenure, and dynamically calculated top-level metrics.
+### 1. Setup Environment
+Clone the repository and set up a Python virtual environment:
+```bash
+git clone https://github.com/Areena2908/CustomerChurn-Prediction.git
+cd CustomerChurn-Prediction
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Execute the Pipeline
+Run the data wrangling and modeling scripts sequentially:
+```bash
+python 1_data_cleaning.py
+python 2_eda.py
+python 3_model.py
+```
+*This will generate model evaluation metrics in the console, save visualizations to `/plots`, and rebuild the predictive `.pkl` models required for the dashboard.*
+
+### 3. Launch Dashboard
+Start the interactive Streamlit application:
+```bash
+streamlit run 4_dashboard.py
+```
+*Navigate to `http://localhost:8501` in your browser to view the interactive web app.*
