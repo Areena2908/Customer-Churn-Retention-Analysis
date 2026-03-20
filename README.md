@@ -1,4 +1,4 @@
-<h1 align="center">📉 Telco Customer Churn Prediction</h1>
+<h1 align="center">📉 Customer Churn Prediction</h1>
 
 <p align="center">
   <strong>An End-to-End Machine Learning & Analytics Portfolio Project</strong>
