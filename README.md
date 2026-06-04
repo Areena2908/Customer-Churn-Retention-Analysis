@@ -1,11 +1,14 @@
-<h1 align="center">📉 Customer Churn Prediction</h1>
+<h1 align="center">📉 Customer Churn & Retention Analysis</h1>
 
 <p align="center">
-  <strong>An End-to-End Machine Learning & Analytics Portfolio Project</strong>
+  <strong>Business Analytics, Machine Learning, and Dashboard Project</strong>
 </p>
 
 ## 📖 Overview
 Customer churn is one of the most important metrics for a growing, subscriber-based business. Retaining an existing customer costs far less than acquiring a new one. This project utilizes the **IBM Telco Customer Churn dataset** to build a comprehensive data pipeline that not only predicts *which* customers are likely to leave, but also identifies the primary business drivers causing the churn.
+
+## Business Problem
+A telecom company wants to understand why customers leave and which customer groups are most at risk. The goal is to support retention strategy by identifying churn drivers across contract type, tenure, monthly charges, and customer behavior.
 
 ### 🎯 Key Objectives
 - **Data Engineering:** Extract, clean, and preprocess raw telecom data.
@@ -26,6 +29,13 @@ Based on our EDA and Machine Learning Feature Importance extraction, we discover
 1. **The Contract Trap:** Customers on **Month-to-month contracts** are overwhelmingly more likely to churn compared to those on 1-year or 2-year lock-in periods. 
 2. **The "Danger Zone" Tenure:** The highest flight risk occurs within the **first 6 to 12 months**. If a customer remains for over a year, their probability of churning drops significantly.
 3. **Price Sensitivity:** High monthly charges strongly correlate with higher churn rates, indicating that a pricing review for basic service tiers may drastically improve retention.
+
+## Business Recommendations
+- Target month-to-month customers with retention offers
+- Create onboarding campaigns for customers in their first year
+- Review pricing for high monthly charge customers
+- Encourage long-term contract upgrades
+- Use churn prediction scores to prioritize outreach
 
 <br>
 
