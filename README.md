@@ -11,7 +11,7 @@ Customer churn is one of the most important metrics for a growing, subscriber-ba
 A telecom company wants to understand why customers leave and which customer groups are most at risk. The goal is to support retention strategy by identifying churn drivers across contract type, tenure, monthly charges, and customer behavior.
 
 ### 🎯 Key Objectives
-- **Data Engineering:** Extract, clean, and preprocess raw telecom data.
+- **Data Preparation:** Clean and preprocess raw telecom customer data.
 - **Exploratory Data Analysis (EDA):** Uncover statistical patterns separating loyal customers from flight risks.
 - **Predictive Modeling:** Train a Random Forest Classifier to identify high-risk accounts with ~80% accuracy.
 - **Interactive Dashboard:** Deploy a Streamlit web application summarizing actionable business insights.
@@ -66,3 +66,15 @@ Start the interactive Streamlit application:
 streamlit run 4_dashboard.py
 ```
 *Navigate to `http://localhost:8501` in your browser to view the interactive web app.*
+
+## Skills Demonstrated
+- Customer churn analysis
+- Retention analytics
+- Business analytics
+- Python data analysis
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Machine learning classification
+- Dashboard development
+- Data storytelling
+- Business recommendations
