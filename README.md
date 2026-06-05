@@ -23,6 +23,17 @@ A telecom company wants to understand why customers leave and which customer gro
 *   **Scikit-Learn:** Machine Learning algorithms and label encoding.
 *   **Streamlit & Plotly:** Interactive web dashboard and deployment.
 
+## Dashboard Preview
+![Customer Churn Dashboard](churn_dashboard_preview.png)
+
+The Streamlit dashboard includes:
+- Total Customers
+- Total Churned
+- Overall Churn Rate
+- Churn by Contract Type
+- Churn by Tenure
+- Top Factors Driving Churn
+
 ## 📊 Key Business Insights
 Based on our EDA and Machine Learning Feature Importance extraction, we discovered the following:
 
