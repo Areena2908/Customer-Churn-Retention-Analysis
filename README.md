@@ -26,13 +26,17 @@ A telecom company wants to understand why customers leave and which customer gro
 ## Dashboard Preview
 ![Customer Churn Dashboard](churn_dashboard_preview.png)
 
-The Streamlit dashboard includes:
-- Total Customers
-- Total Churned
-- Overall Churn Rate
-- Churn by Contract Type
-- Churn by Tenure
-- Top Factors Driving Churn
+## KPIs Analyzed
+
+The Streamlit dashboard tracks key churn and retention metrics, including:
+
+- Total customers
+- Total churned customers
+- Overall churn rate
+- Churn by contract type
+- Churn by tenure
+- Churn by monthly charges
+- Top factors driving churn
 
 ## 📊 Key Business Insights
 Based on our EDA and Machine Learning Feature Importance extraction, we discovered the following:
@@ -55,8 +59,8 @@ Based on our EDA and Machine Learning Feature Importance extraction, we discover
 ### 1. Setup Environment
 Clone the repository and set up a Python virtual environment:
 ```bash
-git clone https://github.com/Areena2908/CustomerChurn-Prediction.git
-cd CustomerChurn-Prediction
+git clone https://github.com/Areena2908/Customer-Churn-Retention-Analysis.git
+cd Customer-Churn-Retention-Analysis
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -89,3 +93,9 @@ streamlit run 4_dashboard.py
 - Dashboard development
 - Data storytelling
 - Business recommendations
+
+## Resume Bullets
+
+- Built a customer churn analysis project using Python and Streamlit to identify high-risk customer segments and key churn drivers.
+- Analyzed churn patterns by contract type, tenure, monthly charges, and customer behavior to support retention strategy.
+- Developed an interactive dashboard summarizing churn KPIs, customer risk groups, and business recommendations for non-technical users.
