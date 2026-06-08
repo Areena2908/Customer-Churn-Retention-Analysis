@@ -48,18 +48,18 @@ graph TD;
 
 ---
 
-## 📈 Power BI Dashboard (Deliverable)
+## 📈 Interactive Streamlit Dashboard (Deliverable)
 
-*The 3-page Power BI dashboard allows non-technical stakeholders to slice the risk pools and download the targeted intervention lists.*
+*The 3-tab Streamlit dashboard allows non-technical stakeholders to slice the risk pools, view live SHAP explainability models, and interactively adjust ROI assumptions to instantly download the targeted intervention lists.*
 
-### Page 1: Churn Overview
-![Placeholder: Add your Power BI Screenshot Here]()
+### Tab 1: Executive Churn Overview
+![Streamlit Overview](plots/streamlit_tab1_overview.png)
 
-### Page 2: Driver Analysis
-![Placeholder: Add your Power BI Screenshot Here]()
+### Tab 2: Driver Analysis & Explainability
+![Streamlit Driver Analysis](plots/streamlit_tab2_drivers.png)
 
-### Page 3: Retention Action List (The Hero Page)
-![Placeholder: Add your Power BI Screenshot Here]()
+### Tab 3: Retention Action List (Interactive ROI Engine)
+![Streamlit ROI Engine](plots/streamlit_tab3_roi.png)
 
 ---
 
