@@ -1,101 +1,121 @@
-<h1 align="center">📉 Customer Churn & Retention Analysis</h1>
+# Customer Churn & Retention Analysis
 
-<p align="center">
-  <strong>Business Analytics, Machine Learning, and Dashboard Project</strong>
-</p>
+[![Data Stack: Power BI & SQL](https://img.shields.io/badge/Data_Stack-Power_BI_%7C_SQL-orange?style=flat-square)](#architecture)
+[![ML: Random Forest & SHAP](https://img.shields.io/badge/Machine_Learning-SHAP_%7C_Random_Forest-blue?style=flat-square)](#machine-learning-engine)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)](LICENSE)
 
-## 📖 Overview
-Customer churn is one of the most important metrics for a growing, subscriber-based business. Retaining an existing customer costs far less than acquiring a new one. This project utilizes the **IBM Telco Customer Churn dataset** to build a comprehensive data pipeline that not only predicts *which* customers are likely to leave, but also identifies the primary business drivers causing the churn.
+**One-line pitch:** A full-stack business analytics project that translates raw telecom customer data into a calibrated predictive model, surfaces the drivers of churn using advanced SQL and SHAP, and calculates the exact ROI of a targeted retention campaign.
 
-## Business Problem
-A telecom company wants to understand why customers leave and which customer groups are most at risk. The goal is to support retention strategy by identifying churn drivers across contract type, tenure, monthly charges, and customer behavior.
+---
 
-### 🎯 Key Objectives
-- **Data Preparation:** Clean and preprocess raw telecom customer data.
-- **Exploratory Data Analysis (EDA):** Uncover statistical patterns separating loyal customers from flight risks.
-- **Predictive Modeling:** Train a Random Forest Classifier to identify high-risk accounts with ~80% accuracy.
-- **Interactive Dashboard:** Deploy a Streamlit web application summarizing actionable business insights.
+## 📊 Executive Summary
 
-## 🛠 Tech Stack
-*   **Python**
-*   **Pandas & NumPy:** Data manipulation and cleaning.
-*   **Matplotlib & Seaborn:** Statistical data visualization.
-*   **Scikit-Learn:** Machine Learning algorithms and label encoding.
-*   **Streamlit & Plotly:** Interactive web dashboard and deployment.
+Customer churn is the silent killer of subscription businesses. This project goes beyond simply training a machine learning model; it answers the **"so what?"** for business stakeholders. By combining predictive modeling with financial ROI simulation, we identify exactly who is going to churn, *why* they are leaving, and exactly how much money we can save by intervening.
 
-## Dashboard Preview
-![Customer Churn Dashboard](churn_dashboard_preview.png)
+### Key Quantitative Findings
 
-## KPIs Analyzed
+> **1. The Retention ROI Pipeline**
+> Using a calibrated Random Forest model, we scored all 7,043 active customers and calculated the Expected Value of Action (EVA) assuming a $50 retention offer and a 30% intervention success rate. We identified **4,074 high-risk customers** where an intervention yields a positive ROI, resulting in **$744,395 in projected net savings** over a 24-month horizon.
 
-The Streamlit dashboard tracks key churn and retention metrics, including:
+> **2. The Contract Trap (SQL & SHAP Drivers)**
+> Both our advanced SQL cross-tabs and our SHAP Machine Learning explainers independently isolated **Contract Type** and **Tenure** as the massive, overwhelming drivers of churn. Customers on Month-to-Month contracts in their first 10 months are the highest flight risk.
 
-- Total customers
-- Total churned customers
-- Overall churn rate
-- Churn by contract type
-- Churn by tenure
-- Churn by monthly charges
-- Top factors driving churn
+### Recommendation
+The business should immediately deploy the $50 retention campaign to the top 4,074 ranked customers identified in the `retention_targets.csv` file, specifically targeting Month-to-Month customers with high monthly charges to lock them into 1-year contracts.
 
-## 📊 Key Business Insights
-Based on our EDA and Machine Learning Feature Importance extraction, we discovered the following:
+---
 
-1. **The Contract Trap:** Customers on **Month-to-month contracts** are overwhelmingly more likely to churn compared to those on 1-year or 2-year lock-in periods. 
-2. **The "Danger Zone" Tenure:** The highest flight risk occurs within the **first 6 to 12 months**. If a customer remains for over a year, their probability of churning drops significantly.
-3. **Price Sensitivity:** High monthly charges strongly correlate with higher churn rates, indicating that a pricing review for basic service tiers may drastically improve retention.
+## 🏗 Architecture & Stack
 
-## Business Recommendations
-- Target month-to-month customers with retention offers
-- Create onboarding campaigns for customers in their first year
-- Review pricing for high monthly charge customers
-- Encourage long-term contract upgrades
-- Use churn prediction scores to prioritize outreach
+```mermaid
+graph TD;
+    CSV[Telco Raw Data] -->|SQL & Pandas| EDA[Driver Analysis & Segmentation];
+    CSV -->|Scikit-Learn| ML[Calibrated Random Forest];
+    ML -->|SHAP| EXPLAIN[Feature Explainability Plot];
+    ML -->|Probabilities| ROI[Retention ROI Simulator];
+    ROI --> TARGETS[retention_targets.csv];
+    EDA --> PBI[Power BI Dashboard];
+    TARGETS --> PBI;
+    
+    classDef raw fill:#e1f5fe,stroke:#0288d1;
+    classDef model fill:#cd7f32,stroke:#8b5a2b;
+    classDef output fill:#ffd700,stroke:#daa520;
+    
+    class CSV raw;
+    class ML,EDA,ROI model;
+    class PBI,TARGETS,EXPLAIN output;
+```
 
-<br>
+---
+
+## 📈 Power BI Dashboard (Deliverable)
+
+*The 3-page Power BI dashboard allows non-technical stakeholders to slice the risk pools and download the targeted intervention lists.*
+
+### Page 1: Churn Overview
+![Placeholder: Add your Power BI Screenshot Here]()
+
+### Page 2: Driver Analysis
+![Placeholder: Add your Power BI Screenshot Here]()
+
+### Page 3: Retention Action List (The Hero Page)
+![Placeholder: Add your Power BI Screenshot Here]()
+
+---
+
+## 🧠 Machine Learning Engine
+
+We prioritized **AUC-PR** over Accuracy because churn is an imbalanced class. Predicting "no one will churn" yields an artificially high accuracy of 74%. 
+
+We wrapped our Random Forest in a `CalibratedClassifierCV` to ensure the probabilities output by `predict_proba()` were mathematically sound enough to use in financial calculations.
+
+### Model Performance
+- **AUC-PR:** 0.659
+- **Precision:** 0.68
+- **Recall:** 0.46
+- **F1 Score:** 0.54
+
+### Feature Explainability (SHAP)
+We used SHAP (SHapley Additive exPlanations) to crack open the "black box" of the Random Forest.
+
+![SHAP Summary Plot](plots/shap_summary.png)
+
+---
+
+## 💼 Retention ROI Business Layer
+
+To convert model probabilities into a *business decision*, we built a scoring table that ranks customers by the expected value of intervening.
+
+**The Financial Logic:**
+```python
+CLV = MonthlyCharges * 24 (months)
+Expected_Loss = Churn_Probability * CLV
+Expected_Value_of_Action = (Expected_Loss * 30% Success Rate) - $50 Intervention Cost
+```
+By targeting only customers where the `Expected_Value_of_Action > 0`, we ensure the retention campaign is strictly profitable.
+
+---
 
 ## 🚀 How to Run Locally
 
 ### 1. Setup Environment
-Clone the repository and set up a Python virtual environment:
 ```bash
-git clone https://github.com/Areena2908/Customer-Churn-Retention-Analysis.git
-cd Customer-Churn-Retention-Analysis
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ### 2. Execute the Pipeline
-Run the data wrangling and modeling scripts sequentially:
+Run the scripts sequentially to generate the calibrated model, SHAP plots, and financial targets:
 ```bash
+cd src
 python 1_data_cleaning.py
-python 2_eda.py
 python 3_model.py
+python 4_retention_roi.py
 ```
-*This will generate model evaluation metrics in the console, save visualizations to `/plots`, and rebuild the predictive `.pkl` models required for the dashboard.*
 
-### 3. Launch Dashboard
-Start the interactive Streamlit application:
-```bash
-streamlit run 4_dashboard.py
-```
-*Navigate to `http://localhost:8501` in your browser to view the interactive web app.*
+### 3. Run the SQL Segmentation
+The 5 advanced analytical queries (window functions, NTILE, cross-tabs) used to validate the business drivers are available in the `/sql` directory. Run them against the raw data using DuckDB or SQLite.
 
-## Skills Demonstrated
-- Customer churn analysis
-- Retention analytics
-- Business analytics
-- Python data analysis
-- Data cleaning and preprocessing
-- Exploratory data analysis
-- Machine learning classification
-- Dashboard development
-- Data storytelling
-- Business recommendations
-
-## Resume Bullets
-
-- Built a customer churn analysis project using Python and Streamlit to identify high-risk customer segments and key churn drivers.
-- Analyzed churn patterns by contract type, tenure, monthly charges, and customer behavior to support retention strategy.
-- Developed an interactive dashboard summarizing churn KPIs, customer risk groups, and business recommendations for non-technical users.
+### 4. Open Power BI
+Open the `/powerbi/` folder and load the `.pbix` file to interact with the dashboards.

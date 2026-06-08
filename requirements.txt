@@ -5,3 +5,5 @@ seaborn
 scikit-learn
 streamlit
 plotly
+shap
+duckdb
